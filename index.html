@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinTrack — Personal Finance</title>
+<link rel="stylesheet" href="style.css" >
+</head>
+<body>
+<div class="container">
+<header><div class="logo">Fin<span>Track</span></div><div class="badge">V1 • Local Storage</div></header>
+
+<h1>Bangun kebiasaan,<br>bukan sekadar saldo.</h1>
+<p class="sub">Personal finance tracker untuk memantau uang saku, pengeluaran, dan konsistensi investasi.</p>
+
+<div class="grid">
+  <div class="card"><div class="label">TOTAL ASET</div><div id="totalAsset" class="value">Rp505.000</div></div>
+  <div class="card"><div class="label">CASH + SALDO</div><div id="cash" class="value">Rp356.000</div></div>
+  <div class="card"><div class="label">INVESTASI</div><div id="investment" class="value green">Rp149.000</div></div>
+</div>
+
+<div class="two section">
+  <div class="card">
+    <div class="row"><div><div class="label">TARGET MINGGU INI</div><div class="value green" id="weeklyProgress">Rp0 / Rp30.000</div></div><div class="value" id="streak">0 🔥</div></div>
+    <div class="progress"><div id="progressBar" style="width:0%"></div></div>
+    <div class="row"><span class="small">Target investasi</span><span class="small">Rp30.000 / minggu</span></div>
+    <p class="note">Target adalah patokan, bukan kewajiban mutlak. Kalau minggu sedang berat, kamu bisa menurunkan nominal tanpa mengganggu kebutuhan penting.</p>
+  </div>
+  <div class="card">
+    <div class="label">RINGKASAN BULAN INI</div>
+    <div class="row" style="margin:14px 0"><span class="small">Pemasukan</span><b id="monthIncome">Rp0</b></div>
+    <div class="row" style="margin:14px 0"><span class="small">Pengeluaran</span><b id="monthExpense">Rp0</b></div>
+    <div class="row" style="margin:14px 0"><span class="small">Investasi</span><b class="green" id="monthInvest">Rp0</b></div>
+  </div>
+</div>
+
+<div class="two section">
+  <div class="card">
+    <div class="row"><div><div class="label">TAMBAH TRANSAKSI</div></div></div>
+    <div class="form">
+      <input id="date" type="date">
+      <select id="type">
+        <option value="income">Pemasukan</option>
+        <option value="expense">Pengeluaran</option>
+        <option value="investment">Investasi</option>
+      </select>
+      <input id="amount" type="number" min="0" placeholder="Nominal, contoh 30000">
+      <input id="category" placeholder="Kategori, contoh: Uang saku">
+      <input id="noteInput" class="full" placeholder="Catatan (opsional)">
+      <button class="full" onclick="addTransaction()">Simpan transaksi</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="label">KONDISI AWAL</div>
+    <div class="row" style="margin:14px 0"><span class="small">Cash awal</span><b>Rp356.000</b></div>
+    <div class="row" style="margin:14px 0"><span class="small">Investasi awal</span><b>Rp149.000</b></div>
+    <div class="row" style="margin:14px 0"><span class="small">Total awal</span><b>Rp505.000</b></div>
+    <p class="note">Angka ini mengikuti kondisi yang kamu masukkan. Transaksi setelahnya akan dihitung dari titik awal ini.</p>
+    <div class="actions"><button class="secondary" onclick="resetData()">Reset data transaksi</button></div>
+  </div>
+</div>
+
+<div class="card section">
+  <div class="row"><div><div class="label">AKTIVITAS 7 HARI TERAKHIR</div></div><div class="small">Investasi per hari</div></div>
+  <div id="chart" class="barbox"></div>
+</div>
+
+<div class="card section">
+  <div class="row"><div class="label">RIWAYAT TRANSAKSI</div><button class="secondary" onclick="exportCSV()">Export CSV</button></div>
+  <div id="table"></div>
+</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

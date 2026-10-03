@@ -1,77 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FinTrack — Personal Finance</title>
-<link rel="stylesheet" href="style.css" >
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0d0f">
+  <title>FinKasTra — Finansial Kas Tracker</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="container">
-<header><div class="logo">Fin<span>KasTrack</span></div><div class="badge">V1 • Local Storage</div></header>
+  <header>
+    <div><div class="logo">Fin<span>KasTra</span></div><div class="small">Finansial Kas Tracker</div></div>
+    <div class="badge">V2.0 • Accounts & Categories</div>
+  </header>
 
-<h1>Bangun kebiasaan,<br>bukan sekadar saldo.</h1>
-<p class="sub">Personal finance tracker untuk memantau uang saku, pengeluaran, dan konsistensi investasi.</p>
+  <section class="hero">
+    <p class="eyebrow">PERSONAL FINANCE</p>
+    <h1>Bangun kebiasaan,<br>bukan sekadar saldo.</h1>
+    <p class="sub">Catat. Pantau. Konsisten. Semua uangmu, lebih teratur.</p>
+  </section>
 
-<div class="grid">
-  <div class="card"><div class="label">TOTAL ASET</div><div id="totalAsset" class="value">Rp505.000</div></div>
-  <div class="card"><div class="label">CASH + SALDO</div><div id="cash" class="value">Rp356.000</div></div>
-  <div class="card"><div class="label">INVESTASI</div><div id="investment" class="value green">Rp149.000</div></div>
-</div>
-
-<div class="two section">
-  <div class="card">
-    <div class="row"><div><div class="label">TARGET MINGGU INI</div><div class="value green" id="weeklyProgress">Rp0 / Rp30.000</div></div><div class="value" id="streak">0 🔥</div></div>
-    <div class="progress"><div id="progressBar" style="width:0%"></div></div>
-    <div class="row"><span class="small">Target investasi</span><span class="small">Rp30.000 / minggu</span></div>
-    <p class="note">Target adalah patokan, bukan kewajiban mutlak. Kalau minggu sedang berat, kamu bisa menurunkan nominal tanpa mengganggu kebutuhan penting.</p>
-  </div>
-  <div class="card">
-    <div class="label">RINGKASAN BULAN INI</div>
-    <div class="row" style="margin:14px 0"><span class="small">Pemasukan</span><b id="monthIncome">Rp0</b></div>
-    <div class="row" style="margin:14px 0"><span class="small">Pengeluaran</span><b id="monthExpense">Rp0</b></div>
-    <div class="row" style="margin:14px 0"><span class="small">Investasi</span><b class="green" id="monthInvest">Rp0</b></div>
-  </div>
-</div>
-
-<div class="two section">
-  <div class="card">
-    <div class="row"><div><div class="label">TAMBAH TRANSAKSI</div></div></div>
-    <div class="form">
-      <input id="date" type="date">
-      <select id="type">
-        <option value="income">Pemasukan</option>
-        <option value="expense">Pengeluaran</option>
-        <option value="investment">Investasi</option>
-      </select>
-      <input id="amount" type="number" min="0" placeholder="Nominal, contoh 30000">
-      <input id="category" placeholder="Kategori, contoh: Uang saku">
-      <input id="noteInput" class="full" placeholder="Catatan (opsional)">
-      <button class="full" onclick="addTransaction()">Simpan transaksi</button>
-    </div>
+  <div class="grid summary-grid">
+    <div class="card"><div class="label">TOTAL ASET</div><div id="totalAsset" class="value">Rp505.000</div><div class="small">Semua akun digabung</div></div>
+    <div class="card"><div class="label">UANG TUNAI & SALDO</div><div id="cash" class="value">Rp356.000</div><div class="small">Cash, e-wallet, dan bank</div></div>
+    <div class="card"><div class="label">INVESTASI</div><div id="investment" class="value green">Rp149.000</div><div class="small">Nilai yang kamu catat</div></div>
   </div>
 
-  <div class="card">
-    <div class="label">KONDISI AWAL</div>
-    <div class="row" style="margin:14px 0"><span class="small">Cash awal</span><b>Rp356.000</b></div>
-    <div class="row" style="margin:14px 0"><span class="small">Investasi awal</span><b>Rp149.000</b></div>
-    <div class="row" style="margin:14px 0"><span class="small">Total awal</span><b>Rp505.000</b></div>
-    <p class="note">Angka ini mengikuti kondisi yang kamu masukkan. Transaksi setelahnya akan dihitung dari titik awal ini.</p>
-    <div class="actions"><button class="secondary" onclick="resetData()">Reset data transaksi</button></div>
+  <div class="two section">
+    <section class="card">
+      <div class="row"><div><div class="label">TARGET INVESTASI MINGGU INI</div><div class="value green" id="weeklyProgress">Rp0 / Rp30.000</div></div><div class="value" id="streak">0 🔥</div></div>
+      <div class="progress"><div id="progressBar" style="width:0%"></div></div>
+      <div class="row"><span class="small">Progress mingguan</span><span class="small">Target Rp30.000</span></div>
+      <p class="note">Target adalah patokan, bukan kewajiban mutlak. Kebutuhan penting tetap nomor satu.</p>
+    </section>
+    <section class="card">
+      <div class="label">RINGKASAN BULAN INI</div>
+      <div class="row stat-row"><span class="small">Pemasukan</span><b id="monthIncome">Rp0</b></div>
+      <div class="row stat-row"><span class="small">Pengeluaran</span><b class="red" id="monthExpense">Rp0</b></div>
+      <div class="row stat-row"><span class="small">Investasi</span><b class="green" id="monthInvest">Rp0</b></div>
+    </section>
   </div>
+
+  <section class="card section">
+    <div class="section-heading"><div><div class="label">01 / ACCOUNTS</div><h2>Akun & dompet</h2></div><button class="secondary" onclick="openAccountForm()">+ Tambah akun</button></div>
+    <p class="note top-note">Atur saldo awal tiap akun. Transfer antar akun tidak dihitung sebagai pemasukan atau pengeluaran.</p>
+    <div id="accounts" class="account-grid"></div>
+  </section>
+
+  <div class="two section">
+    <section class="card">
+      <div class="label">02 / TRANSACTION</div><h2>Tambah transaksi</h2>
+      <div class="form">
+        <label>Tanggal<input id="date" type="date"></label>
+        <label>Jenis transaksi<select id="type" onchange="updateTransactionForm()"><option value="income">Pemasukan</option><option value="expense">Pengeluaran</option><option value="investment">Investasi</option><option value="transfer">Transfer antar akun</option></select></label>
+        <label>Nominal (Rp)<input id="amount" type="number" min="1" step="1" placeholder="Contoh: 20000"></label>
+        <label id="accountLabel">Masuk/keluar dari akun<select id="accountId"></select></label>
+        <label id="categoryLabel">Kategori<select id="category"></select></label>
+        <label id="destinationLabel" class="hidden">Akun tujuan<select id="destinationId"></select></label>
+        <label class="full">Catatan (opsional)<input id="noteInput" placeholder="Contoh: uang saku hari Senin"></label>
+        <button class="full" onclick="addTransaction()">Simpan transaksi</button>
+      </div>
+      <p class="note">Investasi memindahkan saldo dari akun uang ke akun investasi. Pastikan akun sumber memiliki saldo cukup.</p>
+    </section>
+    <section class="card">
+      <div class="label">03 / QUICK GUIDE</div><h2>Alur pencatatan</h2>
+      <div class="guide-item"><span class="guide-number">1</span><div><b>Tambah akun</b><p>Masukkan saldo awal Cash, DANA, Bank, atau Investasi.</p></div></div>
+      <div class="guide-item"><span class="guide-number">2</span><div><b>Catat transaksi</b><p>Pilih jenis, nominal, akun, dan kategori.</p></div></div>
+      <div class="guide-item"><span class="guide-number">3</span><div><b>Transfer dengan benar</b><p>Uang berpindah tempat, total aset tetap sama.</p></div></div>
+      <div class="guide-item"><span class="guide-number">4</span><div><b>Backup data</b><p>Ekspor CSV secara berkala. Data V2.0 tetap tersimpan di browser ini.</p></div></div>
+      <div class="actions"><button class="secondary" onclick="exportCSV()">Export CSV</button><button class="secondary" onclick="exportBackup()">Backup JSON</button><label class="button secondary file-button">Import backup<input type="file" accept="application/json" onchange="importBackup(event)"></label></div>
+    </section>
+  </div>
+
+  <section class="card section">
+    <div class="section-heading"><div><div class="label">04 / HISTORY</div><h2>Riwayat transaksi</h2></div><span id="transactionCount" class="badge">0 transaksi</span></div>
+    <div class="filters"><input id="searchInput" placeholder="Cari catatan atau kategori..." oninput="renderTable()"><select id="filterType" onchange="renderTable()"><option value="all">Semua jenis</option><option value="income">Pemasukan</option><option value="expense">Pengeluaran</option><option value="investment">Investasi</option><option value="transfer">Transfer</option></select><select id="filterMonth" onchange="renderTable()"><option value="all">Semua bulan</option></select></div>
+    <div id="table" class="table-wrap"></div>
+  </section>
+
+  <section class="card section">
+    <div class="row"><div><div class="label">05 / ACTIVITY</div><h2>Investasi 7 hari terakhir</h2></div><span class="small">Target Rp30.000/minggu</span></div>
+    <div id="chart" class="barbox"></div>
+  </section>
+
+  <footer><span>FinKasTra V2.0</span><span>Catat. Pantau. Konsisten.</span><button class="danger subtle" onclick="resetData()">Reset data</button></footer>
 </div>
 
-<div class="card section">
-  <div class="row"><div><div class="label">AKTIVITAS 7 HARI TERAKHIR</div></div><div class="small">Investasi per hari</div></div>
-  <div id="chart" class="barbox"></div>
-</div>
-
-<div class="card section">
-  <div class="row"><div class="label">RIWAYAT TRANSAKSI</div><button class="secondary" onclick="exportCSV()">Export CSV</button></div>
-  <div id="table"></div>
-</div>
-</div>
-
+<dialog id="accountDialog">
+  <form method="dialog" id="accountForm" class="dialog-form" onsubmit="saveAccount(event)">
+    <div class="row"><h2 id="accountDialogTitle">Tambah akun</h2><button type="button" class="icon-button" onclick="closeAccountForm()">✕</button></div>
+    <label>Nama akun<input id="newAccountName" required maxlength="40" placeholder="Contoh: DANA"></label>
+    <label>Jenis akun<select id="newAccountType"><option value="cash">Cash</option><option value="ewallet">E-wallet</option><option value="bank">Bank</option><option value="investment">Investasi</option></select></label>
+    <label>Saldo awal (Rp)<input id="newAccountBalance" type="number" min="0" step="1" required placeholder="0"></label>
+    <p class="note">Saldo awal hanya untuk akun baru. Untuk akun yang sudah punya transaksi, gunakan transaksi agar riwayat tetap cocok.</p>
+    <button type="submit">Simpan akun</button>
+  </form>
+</dialog>
 <script src="script.js"></script>
 </body>
 </html>

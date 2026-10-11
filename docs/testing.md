@@ -2,7 +2,7 @@
 
 ## Periode Testing
 
-Mulai:
+Mulai: 1 September 2026
 Selesai:
 
 ## Tujuan Testing
@@ -24,14 +24,16 @@ keuangan sehari-hari dan membantu menjaga konsistensi investasi.
 - [ ] Penyimpanan data
 
 ## Temuan
+11 September 2026
+1. export csv perlu di update 
 
 ### Yang Berjalan dengan Baik
-
--
+11 September 2026
+- Belum ada temuan 
 
 ### Yang Terasa Ribet
-
--
+11 September 2026
+- Belum ada temuan
 
 ### Bug
 
